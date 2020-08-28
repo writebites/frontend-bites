@@ -1,0 +1,27 @@
+header {
+  padding: 1em;
+  background-color: $light-mint;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  img {
+    max-width: 4em;
+    max-height: 2em;
+  }
+  nav {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    a {
+      text-decoration: none;
+      padding: 0.5em;
+      color: $dark-green;
+      &:hover {
+        color: $tar;
+        font-style: italic;
+      }
+    }
+  }
+}

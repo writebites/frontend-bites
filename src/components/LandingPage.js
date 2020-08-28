@@ -1,10 +1,10 @@
 import React from 'react';
-import BookWithFeather from '../images/bookWithFeather.png';
+import WriteBitesLogo from '../images/WriteBitesLogo.png';
 
 export default function LandingPage() {
   return (
     <div className="landing-page">
-      <img src={BookWithFeather} alt="book with feather pen" />
+      <img src={WriteBitesLogo} alt="book with feather pen" />
     </div>
   );
 }
