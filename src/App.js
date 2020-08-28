@@ -5,7 +5,6 @@ import Login from './components/Login';
 import NavBar from './components/NavBar';
 import LandingPage from './components/LandingPage';
 import GetUserInfo from './components/GetUserInfo';
-import BookWithFeather from './images/bookWithFeather.png';
 
 function App() {
   return (

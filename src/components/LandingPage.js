@@ -1,10 +1,12 @@
 import React from 'react';
-import WriteBitesLogo from '../images/WriteBitesLogo.png';
+import typingOnComputer from '../images/typingOnComputer.jpg';
 
 export default function LandingPage() {
   return (
     <div className="landing-page">
-      <img src={WriteBitesLogo} alt="book with feather pen" />
+      <div className="image-container">
+        <img src={typingOnComputer} alt="typing on computer" />
+      </div>
     </div>
   );
 }

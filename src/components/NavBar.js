@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import BookWithFeather from '../images/bookWithFeather.png';
+import BookWithFeather from '../images/bookWithFeather3.png';
 
 export default function NavBar() {
   return (
