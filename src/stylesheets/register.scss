@@ -1,3 +1,46 @@
 .register-page {
-  padding: 2em;
+  border: 2px solid $dark-green;
+  border-radius: 2px;
+  margin: 4em auto;
+  display: flex;
+  flex-flow: row wrap;
+  width: 70vw;
+  @media (max-width: 500px) {
+    flex-direction: column-reverse;
+    width: 80vw;
+  }
+  .left-side {
+    max-width: 22vw;
+    background: #cccfdf;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    @media (max-width: 500px) {
+      max-width: 100vw;
+    }
+  }
+  .right-side {
+    padding: 2em;
+    max-width: 50vw;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    @media (max-width: 500px) {
+      padding: 1em;
+      max-width: 100vw;
+    }
+    h1 {
+      padding: 0.5em 0;
+      @media (max-width: 500px) {
+        font-size: 2em;
+      }
+    }
+    h3 {
+      padding-bottom: 0.5em;
+      font-style: italic;
+      @media (max-width: 500px) {
+        font-size: 1em;
+      }
+    }
+  }
 }
