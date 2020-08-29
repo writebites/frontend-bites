@@ -24,6 +24,28 @@ p {
   font-size: 1em;
 }
 
+ul {
+  padding: 1em 1em 1em 0;
+  li {
+    padding: 1em auto;
+    margin: 1em auto;
+    font-size: 1.1em;
+    line-height: 1.5em;
+  }
+}
+
+footer {
+  min-height: 4em;
+  background: $tar;
+  text-align: center;
+  color: white;
+  padding: 2em;
+  margin-top: 4em;
+  @media (max-width: 500px) {
+    margin-top: 1em;
+  }
+}
+
 .image-container {
   img {
     max-width: 100%;
