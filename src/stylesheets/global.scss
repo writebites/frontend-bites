@@ -35,4 +35,8 @@ p {
   &:hover {
     color: $tar;
   }
+  @media (max-width: 500px) {
+    font-size: 0.75em;
+    padding-left: 0.25em;
+  }
 }

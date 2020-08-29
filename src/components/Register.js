@@ -99,6 +99,7 @@ export default function Register(props) {
               value={newUser.username}
               onChange={handleChange}
               required
+              placeholder="username"
             />
             <span className="fa-icon">
               <FontAwesomeIcon icon={faFont} onClick={toggleCase} />
@@ -114,6 +115,7 @@ export default function Register(props) {
               value={newUser.password1}
               onChange={handleChange}
               required
+              placeholder="password"
             />
             {showPassword1 ? (
               <span className="fa-icon">
@@ -141,6 +143,7 @@ export default function Register(props) {
               value={newUser.password2}
               onChange={handleChange}
               required
+              placeholder="confirm password"
             />
             {showPassword2Ref.current ? (
               <span className="fa-icon">
