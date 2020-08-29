@@ -9,7 +9,7 @@ import {
 import writingOutside from '../images/writingOutside.jpg';
 
 export default function Profile() {
-  const [writer, setWriter] = useState({
+  const [writer] = useState({
     username: localStorage.getItem('username') || '',
     blurb: localStorage.getItem('blurb') || '',
     location: localStorage.getItem('location') || '',
@@ -22,38 +22,46 @@ export default function Profile() {
       <div className="left-side">
         <h1>{writer.username ? writer.username : 'Profile'}</h1>
 
-        <div className="profile-item">
-          <span className="fa-icon">
-            <FontAwesomeIcon icon={faEnvelopeOpenText} />
-          </span>
-          {writer.email && <p>{writer.email}</p>}
-        </div>
+        {writer.email && (
+          <div className="profile-item">
+            <span className="fa-icon">
+              <FontAwesomeIcon icon={faEnvelopeOpenText} />
+            </span>
+            <p>{writer.email}</p>
+          </div>
+        )}
 
-        <div className="profile-item">
-          <span className="fa-icon">
-            <FontAwesomeIcon icon={faUserEdit} />
-          </span>
-          {writer.blurb && <p>{writer.blurb}</p>}
-        </div>
+        {writer.blurb && (
+          <div className="profile-item">
+            <span className="fa-icon">
+              <FontAwesomeIcon icon={faUserEdit} />
+            </span>
+            <p>{writer.blurb}</p>
+          </div>
+        )}
 
-        <div className="profile-item">
-          <span className="fa-icon">
-            <FontAwesomeIcon icon={faThumbtack} />
-          </span>
-          {writer.location && <p>{writer.location}</p>}
-        </div>
+        {writer.location && (
+          <div className="profile-item">
+            <span className="fa-icon">
+              <FontAwesomeIcon icon={faThumbtack} />
+            </span>
+            <p>{writer.location}</p>
+          </div>
+        )}
 
-        <div className="profile-item">
-          <span className="fa-icon">
-            <FontAwesomeIcon icon={faHeart} />
-          </span>
-          {writer.favorites && <p>Favorites: {writer.favorites}</p>}
-        </div>
+        {writer.favorites && (
+          <div className="profile-item">
+            <span className="fa-icon">
+              <FontAwesomeIcon icon={faHeart} />
+            </span>
+            <p>Favorites: {writer.favorites}</p>
+          </div>
+        )}
       </div>
-
-      <div className="right-side"></div>
-      <div className="image-container">
-        <img src={writingOutside} alt="writing outside" />
+      <div className="right-side">
+        <div className="image-container">
+          <img src={writingOutside} alt="writing outside" />
+        </div>
       </div>
     </div>
   );
