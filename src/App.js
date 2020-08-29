@@ -5,6 +5,8 @@ import Login from './components/Login';
 import NavBar from './components/NavBar';
 import LandingPage from './components/LandingPage';
 import GetUserInfo from './components/GetUserInfo';
+import Profile from './components/Profile';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
       <Route path="/register" component={Register} />
       <Route path="/login" component={Login} />
       <Route path="/aboutme" component={GetUserInfo} />
+      <PrivateRoute path="/profile" component={Profile} />
     </div>
   );
 }

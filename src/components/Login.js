@@ -31,7 +31,7 @@ export default function Login(props) {
       .then((response) => {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('username', newUser.username);
-        props.history.push('/aboutme');
+        props.history.push('/profile');
         /*
             // To get the information from the token payload:
             const base64 = response.data.token.split('.')[1];
