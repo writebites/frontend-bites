@@ -11,7 +11,8 @@ export default function NavBar() {
       <h1>WriteBites</h1>
       <nav>
         <Link to="/register">Register</Link>
-        <Link to="/aboutme">Profile</Link>
+        <Link to="/profile">Profile</Link>
+        <Link to="/aboutme">Update</Link>
         <Link to="/login">Login</Link>
         <Link to="/">Home</Link>
       </nav>
