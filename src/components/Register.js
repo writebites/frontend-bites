@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash, faFont } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import typewriter from '../images/typewriter.jpg';
 
@@ -9,6 +12,16 @@ export default function Register(props) {
     password2: '',
   });
   const [message, setMessage] = useState(null);
+
+  const [showPassword1, setShowPassword1] = useState(false);
+  const showPassword1Ref = useRef();
+  showPassword1Ref.current = showPassword1;
+
+  const [showPassword2, setShowPassword2] = useState(false);
+  const showPassword2Ref = useRef();
+  showPassword2Ref.current = showPassword2;
+
+  const [isUpperCase, setIsUpperCase] = useState(false);
 
   const handleChange = (e) => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
@@ -44,6 +57,28 @@ export default function Register(props) {
     }
   };
 
+  const togglePasswordDisplay = (number) => {
+    if (number === 1) {
+      setShowPassword1(!showPassword1);
+    } else {
+      setShowPassword2(!showPassword2);
+    }
+  };
+
+  const toggleCase = () => {
+    setIsUpperCase(!isUpperCase);
+    console.log('toggle case');
+    if (!isUpperCase) {
+      const capitalizedUsername = newUser.username
+        .trim()
+        .toLowerCase()
+        .replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
+      setNewUser({ ...newUser, username: capitalizedUsername });
+    } else {
+      setNewUser({ ...newUser, username: newUser.username.toLowerCase() });
+    }
+  };
+
   return (
     <div className="register-page">
       <div className="left-side">
@@ -65,35 +100,71 @@ export default function Register(props) {
               onChange={handleChange}
               required
             />
+            <span className="fa-icon">
+              <FontAwesomeIcon icon={faFont} onClick={toggleCase} />
+            </span>
           </div>
 
           <div className="input-group">
             <label htmlFor="password1">Password:</label>
             <input
-              type="password"
+              type={showPassword1Ref.current ? 'text' : 'password'}
               name="password1"
               id="password1"
               value={newUser.password1}
               onChange={handleChange}
               required
             />
+            {showPassword1 ? (
+              <span className="fa-icon">
+                <FontAwesomeIcon
+                  icon={faEye}
+                  onClick={() => togglePasswordDisplay(1)}
+                />
+              </span>
+            ) : (
+              <span className="fa-icon">
+                <FontAwesomeIcon
+                  icon={faEyeSlash}
+                  onClick={() => togglePasswordDisplay(1)}
+                />
+              </span>
+            )}
           </div>
 
           <div className="input-group">
             <label htmlFor="password2">Confirm Password:</label>
             <input
-              type="password"
+              type={showPassword2Ref.current ? 'text' : 'password'}
               name="password2"
               id="password2"
               value={newUser.password2}
               onChange={handleChange}
               required
             />
+            {showPassword2Ref.current ? (
+              <span className="fa-icon">
+                <FontAwesomeIcon
+                  icon={faEye}
+                  onClick={() => togglePasswordDisplay(2)}
+                />
+              </span>
+            ) : (
+              <span className="fa-icon">
+                <FontAwesomeIcon
+                  icon={faEyeSlash}
+                  onClick={() => togglePasswordDisplay(2)}
+                />
+              </span>
+            )}
           </div>
           {message && <p>{message}</p>}
 
           <button type="submit">Submit</button>
         </form>
+        <p>
+          Already have an account? Sign in <Link to="/login">here</Link>.
+        </p>
       </div>
     </div>
   );

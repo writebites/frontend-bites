@@ -29,3 +29,10 @@ p {
     max-width: 100%;
   }
 }
+
+.fa-icon {
+  color: $dark-green;
+  &:hover {
+    color: $tar;
+  }
+}
