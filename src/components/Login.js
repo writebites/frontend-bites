@@ -33,6 +33,7 @@ export default function Login(props) {
       .then((response) => {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('username', newUser.username);
+        localStorage.setItem('submissions', JSON.stringify([]));
 
         // To get the information from the token payload:
         const base64 = response.data.token.split('.')[1];

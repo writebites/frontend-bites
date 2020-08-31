@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import LandingPage from './components/LandingPage';
 import GetUserInfo from './components/GetUserInfo';
 import Profile from './components/Profile';
+import WritingPromptPage from './components/WritingPromptPage';
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Route path="/login" component={Login} />
       <Route path="/aboutme" component={GetUserInfo} />
       <PrivateRoute path="/profile" component={Profile} />
+      <PrivateRoute path="/prompt" component={WritingPromptPage} />
     </div>
   );
 }
