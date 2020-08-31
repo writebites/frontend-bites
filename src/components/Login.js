@@ -11,6 +11,8 @@ export default function Login(props) {
     password1: '',
   });
 
+  const [email] = localStorage.getItem('email') || '';
+
   const [showPassword1, setShowPassword1] = useState(false);
   const showPassword1Ref = useRef();
   showPassword1Ref.current = showPassword1;
@@ -31,15 +33,20 @@ export default function Login(props) {
       .then((response) => {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('username', newUser.username);
-        props.history.push('/profile');
-        /*
-            // To get the information from the token payload:
-            const base64 = response.data.token.split('.')[1];
-            const decoded = window.atob(base64);
-            const tokenInfo = JSON.parse(decoded);
-            const issueDate = new Date(tokenInfo.iat);
-            const expirationDate = new Date(tokenInfo.exp);
-            */
+
+        // To get the information from the token payload:
+        const base64 = response.data.token.split('.')[1];
+        const decoded = window.atob(base64);
+        const tokenInfo = JSON.parse(decoded);
+        //const issueDate = new Date(tokenInfo.iat);
+        ///const expirationDate = new Date(tokenInfo.exp);
+
+        localStorage.setItem('id', tokenInfo.id);
+        if (email) {
+          props.history.push('/profile');
+        } else {
+          props.history.push('/aboutme');
+        }
       })
       .catch((err) => {
         console.log(err);
