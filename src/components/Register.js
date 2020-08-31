@@ -37,17 +37,7 @@ export default function Register(props) {
           password: newUser.password1,
         })
         .then((response) => {
-          localStorage.setItem('token', response.data.token);
           localStorage.setItem('username', newUser.username);
-
-          // To get the information from the token payload:
-          //const base64 = response.data.token.split('.')[1];
-          //const decoded = window.atob(base64);
-          //const tokenInfo = JSON.parse(decoded);
-
-          // const issueDate = new Date(tokenInfo.iat);
-          // const expirationDate = new Date(tokenInfo.exp);
-
           props.history.push('/login');
         })
         .catch((err) => {
