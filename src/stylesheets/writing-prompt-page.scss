@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Special+Elite&display=swap');
+
+.writing-prompt-page {
+  text-align: center;
+  margin: 1em;
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 1em;
+  }
+  h2 {
+    font-style: italic;
+    font-weight: bold;
+  }
+  h3 {
+    font-size: 3em;
+    overflow-wrap: break-word;
+  }
+  p {
+    white-space: pre-wrap;
+    font-size: 2em;
+    text-align: left;
+    line-height: 1.2em;
+  }
+  button {
+    font-size: 1.5em;
+  }
+  .handwriting {
+    font-family: 'Dancing Script', cursive;
+  }
+  .typing {
+    font-family: 'Special Elite', cursive;
+  }
+  .writing-area {
+    width: 95vw;
+    background: $light-mint;
+
+    display: flex;
+    margin: 1em auto;
+    .left-side {
+      width: 50vw;
+
+      form {
+        background: $dark-green;
+        border-radius: 3px 0 0 3px;
+        .input-group {
+          flex-flow: column nowrap;
+          width: 100%;
+          textarea {
+            width: 90%;
+            padding: 0.5em;
+            border-radius: 3px;
+          }
+          input {
+            line-height: 2em;
+            border-radius: 3px;
+          }
+          label {
+            color: white;
+            width: 100%;
+            padding-bottom: 0.5em;
+          }
+        }
+      }
+    }
+    .right-side {
+      width: 50vw;
+      border-radius: 0 3px 3px 0;
+      border: 2px solid $dark-green;
+    }
+  }
+}

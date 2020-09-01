@@ -1,4 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faPenFancy,
+  faFont,
+  faEraser,
+  faPaperPlane,
+} from '@fortawesome/free-solid-svg-icons';
 import prompts from '../data/prompts';
 
 export default function WritingPromptPage(props) {
@@ -7,7 +14,9 @@ export default function WritingPromptPage(props) {
     prompt: '',
     writingResponse: '',
     promptId: 0,
+    title: '',
   });
+  const [displayCursive, setDisplayCursive] = useState(false);
 
   useEffect(() => {
     const promptIndex = Math.floor(Math.random() * prompts.length);
@@ -41,26 +50,81 @@ export default function WritingPromptPage(props) {
     setSubmission({ ...submission, [e.target.name]: e.target.value });
   };
 
+  function toggleDisplay() {
+    setDisplayCursive(!displayCursive);
+  }
+
+  function handleClear() {
+    setSubmission({ ...submission, writingResponse: '', title: '' });
+  }
+
   return (
-    <div>
+    <div className="writing-prompt-page">
       <h1>Writing Prompt of the Day</h1>
       <h2>{submission.prompt}</h2>
-      <button onClick={changePrompt}>New Prompt</button>
-      <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          <label htmlFor="writingResponse">Your Response:</label>
-          <textarea
-            name="writingResponse"
-            id="writingResponse"
-            value={submission.writingResponse}
-            onChange={handleChange}
-            required
-            placeholder="write your response here"
-            rows="10"
-          />
+      <button onClick={changePrompt}>Get New Prompt</button>
+      <div className="writing-area">
+        <div className="left-side">
+          <form onSubmit={handleSubmit}>
+            <div className="input-group">
+              <label htmlFor="title">Title:</label>
+              <input
+                name="title"
+                id="title"
+                value={submission.title}
+                onChange={handleChange}
+                required
+                placeholder="title"
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="writingResponse">Your Response:</label>
+              <textarea
+                name="writingResponse"
+                id="writingResponse"
+                value={submission.writingResponse}
+                onChange={handleChange}
+                required
+                placeholder="write your response here"
+                rows="10"
+              />
+            </div>
+            <div>
+              <button onClick={toggleDisplay}>
+                {displayCursive ? (
+                  <>
+                    <FontAwesomeIcon icon={faFont} />
+                    Display
+                  </>
+                ) : (
+                  <>
+                    <FontAwesomeIcon icon={faPenFancy} />
+                    Display
+                  </>
+                )}
+              </button>
+              <button type="submit">
+                <FontAwesomeIcon icon={faPaperPlane} />
+                Submit
+              </button>
+              <button onClick={handleClear}>
+                {' '}
+                <FontAwesomeIcon icon={faEraser} /> Clear
+              </button>
+            </div>
+          </form>
         </div>
-        <button type="submit">Submit</button>
-      </form>
+        <div className="right-side">
+          <h3 className={displayCursive ? 'handwriting' : 'typing'}>
+            {submission.title}
+          </h3>
+          <p className={displayCursive ? 'handwriting' : 'typing'}>
+            {submission.writingResponse}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
+
+// style={{ whiteSpace: 'pre-wrap' }}
