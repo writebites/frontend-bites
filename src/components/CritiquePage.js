@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import sampleResponses from '../data/sampleResponses';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRandom } from '@fortawesome/free-solid-svg-icons';
+import {
+  faRandom,
+  faPaperPlane,
+  faEraser,
+} from '@fortawesome/free-solid-svg-icons';
 
 export default function CritiquePage(props) {
   const [responseToCritique, setResponseToCritique] = useState({
@@ -17,7 +21,6 @@ export default function CritiquePage(props) {
   const [critique, setCritique] = useState({
     star_rating: 0,
     body: '',
-    // Note: For submitting critique, grab user_id from localStorage to get the critique's author, and post_id from the responseToCritique object.
   });
 
   useEffect(() => {
@@ -58,54 +61,83 @@ export default function CritiquePage(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(critique);
+
+    const submissionBody = {
+      star_rating: critique.star_rating,
+      body: critique.body,
+      user_id: localStorage.getItem('id'),
+      post_id: responseToCritique.post_id,
+    };
+    console.log(submissionBody);
+    let critiques = localStorage.getItem('critiques');
+    critiques = JSON.parse(critiques);
+    critiques = [...critiques, critique];
+    localStorage.setItem('critiques', JSON.stringify(critiques));
+    props.history.push('/collection');
+  };
+
+  const handleClear = (e) => {
+    setCritique({ ...critique, body: '', star_rating: 0 });
   };
 
   return (
     <div className="critique-page">
       <h1>Give Quick Feedback</h1>
+      <main>
+        <div className="left-side">
+          <form onSubmit={handleSubmit}>
+            <div className="input-group">
+              <label htmlFor="star_rating">Your Rating:</label>
+              <input
+                name="star_rating"
+                id="star_rating"
+                value={critique.star_rating}
+                onChange={handleChange}
+                required
+                type="number"
+                placeholder="star rating"
+                step="0.5"
+                max="5"
+                min="0"
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="body">Your Feedback:</label>
+              <textarea
+                name="body"
+                id="body"
+                value={critique.body}
+                onChange={handleChange}
+                required
+                placeholder="write your feedback here"
+                rows="10"
+              />
+            </div>
+            <div className="button-group">
+              <button type="submit">
+                <FontAwesomeIcon icon={faPaperPlane} className="fa-icon" />{' '}
+                Submit
+              </button>
 
-      <div className="right-side">
-        <button onClick={changeResponse}>
-          <FontAwesomeIcon icon={faRandom} className="fa-icon" />
-          Get New Prompt
-        </button>
-        <h2>{responseToCritique.title}</h2>
-        <h3>Prompt: {responseToCritique.prompt}</h3>
-        <p>{responseToCritique.body}</p>
-      </div>
+              <button type="clear" onClick={handleClear}>
+                {' '}
+                <FontAwesomeIcon icon={faEraser} className="fa-icon" /> Clear
+              </button>
 
-      <div className="left-side">
-        <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <label htmlFor="star_rating">Your Rating:</label>
-            <input
-              name="star_rating"
-              id="star_rating"
-              value={critique.star_rating}
-              onChange={handleChange}
-              required
-              type="number"
-              placeholder="star rating"
-              step="0.5"
-              max="5"
-              min="0"
-            />
-          </div>
-          <div className="input-group">
-            <label htmlFor="body">Your Feedback:</label>
-            <textarea
-              name="body"
-              id="body"
-              value={critique.body}
-              onChange={handleChange}
-              required
-              placeholder="write your feedback here"
-              rows="10"
-            />
-          </div>
-        </form>
-      </div>
+              <button type="button" onClick={changeResponse}>
+                <FontAwesomeIcon icon={faRandom} className="fa-icon" />
+                New
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div className="right-side">
+          <h2>{responseToCritique.title}</h2>
+          <h3>Prompt: {responseToCritique.prompt}</h3>
+          <p>{responseToCritique.body}</p>
+        </div>
+      </main>
     </div>
   );
 }

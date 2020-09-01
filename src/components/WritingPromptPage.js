@@ -46,7 +46,7 @@ export default function WritingPromptPage(props) {
     submissions = JSON.parse(submissions);
     submissions = [...submissions, submission];
     localStorage.setItem('submissions', JSON.stringify(submissions));
-    props.history.push('/collection');
+    props.history.push('/critique');
   }
 
   const handleChange = (e) => {
@@ -114,7 +114,7 @@ export default function WritingPromptPage(props) {
                 <FontAwesomeIcon icon={faPaperPlane} className="fa-icon" />
                 Submit
               </button>
-              <button onClick={handleClear}>
+              <button type="clear" onClick={handleClear}>
                 {' '}
                 <FontAwesomeIcon icon={faEraser} className="fa-icon" /> Clear
               </button>
