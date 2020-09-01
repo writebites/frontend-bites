@@ -47,6 +47,7 @@ export default function WritingPromptPage(props) {
     submissions = JSON.parse(submissions);
     submissions = [...submissions, submission];
     localStorage.setItem('submissions', JSON.stringify(submissions));
+    props.history.push('/collection');
   }
   const handleChange = (e) => {
     setSubmission({ ...submission, [e.target.name]: e.target.value });
