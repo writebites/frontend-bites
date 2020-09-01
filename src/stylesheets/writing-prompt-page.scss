@@ -7,7 +7,10 @@
   h2,
   h3,
   p {
-    margin: 1em;
+    margin: 0.8em;
+  }
+  h1 {
+    font-size: 2.75em;
   }
   h2 {
     font-style: italic;
@@ -25,6 +28,12 @@
   }
   button {
     font-size: 1.5em;
+    margin-left: 0.1em;
+    border-radius: 3px;
+  }
+  .fa-icon {
+    padding-right: 0.2em;
+    color: teal;
   }
   .handwriting {
     font-family: 'Dancing Script', cursive;
@@ -34,12 +43,11 @@
   }
   .writing-area {
     width: 95vw;
-    background: $light-mint;
 
     display: flex;
     margin: 1em auto;
     .left-side {
-      width: 50vw;
+      width: 60vw;
 
       form {
         background: $dark-green;
@@ -55,6 +63,7 @@
           input {
             line-height: 2em;
             border-radius: 3px;
+            text-align: center;
           }
           label {
             color: white;
@@ -65,9 +74,10 @@
       }
     }
     .right-side {
-      width: 50vw;
+      width: 40vw;
       border-radius: 0 3px 3px 0;
       border: 2px solid $dark-green;
+      background: $light-mint;
     }
   }
 }

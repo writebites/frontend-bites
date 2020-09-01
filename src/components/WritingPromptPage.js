@@ -5,8 +5,10 @@ import {
   faFont,
   faEraser,
   faPaperPlane,
+  faRandom,
 } from '@fortawesome/free-solid-svg-icons';
 import prompts from '../data/prompts';
+import blankPage from '../images/blankPageCropped.jpg';
 
 export default function WritingPromptPage(props) {
   //const [prompt, setPrompt] = useState('What did you eat for breakfast?');
@@ -62,12 +64,15 @@ export default function WritingPromptPage(props) {
     <div className="writing-prompt-page">
       <h1>Writing Prompt of the Day</h1>
       <h2>{submission.prompt}</h2>
-      <button onClick={changePrompt}>Get New Prompt</button>
+      <button onClick={changePrompt}>
+        <FontAwesomeIcon icon={faRandom} className="fa-icon" />
+        Get New Prompt
+      </button>
       <div className="writing-area">
         <div className="left-side">
           <form onSubmit={handleSubmit}>
             <div className="input-group">
-              <label htmlFor="title">Title:</label>
+              <label htmlFor="title">Your Title:</label>
               <input
                 name="title"
                 id="title"
@@ -89,27 +94,28 @@ export default function WritingPromptPage(props) {
                 rows="10"
               />
             </div>
+
             <div>
               <button onClick={toggleDisplay}>
                 {displayCursive ? (
                   <>
-                    <FontAwesomeIcon icon={faFont} />
+                    <FontAwesomeIcon icon={faFont} className="fa-icon" />
                     Display
                   </>
                 ) : (
                   <>
-                    <FontAwesomeIcon icon={faPenFancy} />
+                    <FontAwesomeIcon icon={faPenFancy} className="fa-icon" />
                     Display
                   </>
                 )}
               </button>
               <button type="submit">
-                <FontAwesomeIcon icon={faPaperPlane} />
+                <FontAwesomeIcon icon={faPaperPlane} className="fa-icon" />
                 Submit
               </button>
               <button onClick={handleClear}>
                 {' '}
-                <FontAwesomeIcon icon={faEraser} /> Clear
+                <FontAwesomeIcon icon={faEraser} className="fa-icon" /> Clear
               </button>
             </div>
           </form>
@@ -122,6 +128,9 @@ export default function WritingPromptPage(props) {
             {submission.writingResponse}
           </p>
         </div>
+      </div>
+      <div className="image-container">
+        <img src={blankPage} alt="blank page with pens and plants" />
       </div>
     </div>
   );
