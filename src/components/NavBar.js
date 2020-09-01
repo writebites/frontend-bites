@@ -10,6 +10,7 @@ export default function NavBar() {
       </Link>
       <h1>WriteBites</h1>
       <nav>
+        <Link to="/prompt">Write</Link>
         <Link to="/register">Register</Link>
         <Link to="/profile">Profile</Link>
         <Link to="/aboutme">Update</Link>
