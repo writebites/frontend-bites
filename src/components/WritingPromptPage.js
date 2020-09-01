@@ -11,7 +11,6 @@ import prompts from '../data/prompts';
 import blankPage from '../images/blankPageCropped.jpg';
 
 export default function WritingPromptPage(props) {
-  //const [prompt, setPrompt] = useState('What did you eat for breakfast?');
   const [submission, setSubmission] = useState({
     prompt: '',
     writingResponse: '',
@@ -22,7 +21,6 @@ export default function WritingPromptPage(props) {
 
   useEffect(() => {
     const promptIndex = Math.floor(Math.random() * prompts.length);
-    //setPrompt(prompts[promptIndex]);
     setSubmission((oldSubmission) => {
       return {
         ...oldSubmission,
@@ -97,7 +95,7 @@ export default function WritingPromptPage(props) {
             </div>
 
             <div>
-              <button onClick={toggleDisplay}>
+              <button type="button" onClick={toggleDisplay}>
                 {displayCursive ? (
                   <>
                     <FontAwesomeIcon icon={faFont} className="fa-icon" />
