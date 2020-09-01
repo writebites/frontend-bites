@@ -13,9 +13,10 @@ import blankPage from '../images/blankPageCropped.jpg';
 export default function WritingPromptPage(props) {
   const [submission, setSubmission] = useState({
     prompt: '',
-    writingResponse: '',
+    body: '',
     promptId: 0,
     title: '',
+    user_id: localStorage.getItem('id'),
   });
   const [displayCursive, setDisplayCursive] = useState(false);
 
@@ -47,6 +48,7 @@ export default function WritingPromptPage(props) {
     localStorage.setItem('submissions', JSON.stringify(submissions));
     props.history.push('/collection');
   }
+
   const handleChange = (e) => {
     setSubmission({ ...submission, [e.target.name]: e.target.value });
   };
@@ -56,7 +58,7 @@ export default function WritingPromptPage(props) {
   }
 
   function handleClear() {
-    setSubmission({ ...submission, writingResponse: '', title: '' });
+    setSubmission({ ...submission, body: '', title: '' });
   }
 
   return (
@@ -82,11 +84,11 @@ export default function WritingPromptPage(props) {
               />
             </div>
             <div className="input-group">
-              <label htmlFor="writingResponse">Your Response:</label>
+              <label htmlFor="body">Your Response:</label>
               <textarea
-                name="writingResponse"
-                id="writingResponse"
-                value={submission.writingResponse}
+                name="body"
+                id="body"
+                value={submission.body}
                 onChange={handleChange}
                 required
                 placeholder="write your response here"
@@ -124,7 +126,7 @@ export default function WritingPromptPage(props) {
             {submission.title}
           </h3>
           <p className={displayCursive ? 'handwriting' : 'typing'}>
-            {submission.writingResponse}
+            {submission.body}
           </p>
         </div>
       </div>
@@ -134,5 +136,3 @@ export default function WritingPromptPage(props) {
     </div>
   );
 }
-
-// style={{ whiteSpace: 'pre-wrap' }}

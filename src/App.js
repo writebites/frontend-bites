@@ -9,6 +9,7 @@ import Profile from './components/Profile';
 import WritingPromptPage from './components/WritingPromptPage';
 import WritingCollection from './components/WritingCollection';
 import PrivateRoute from './components/PrivateRoute';
+import CritiquePage from './components/CritiquePage';
 
 function App() {
   return (
@@ -17,9 +18,10 @@ function App() {
       <Route exact path="/" component={LandingPage} />
       <Route path="/register" component={Register} />
       <Route path="/login" component={Login} />
-      <Route path="/aboutme" component={GetUserInfo} />
+      <PrivateRoute path="/aboutme" component={GetUserInfo} />
       <PrivateRoute path="/profile" component={Profile} />
       <PrivateRoute path="/prompt" component={WritingPromptPage} />
+      <PrivateRoute path="/critique" component={CritiquePage} />
       <PrivateRoute path="/collection" component={WritingCollection} />
     </div>
   );

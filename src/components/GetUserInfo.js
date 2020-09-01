@@ -36,7 +36,7 @@ export default function GetUserInfo(props) {
     localStorage.setItem('location', newUser.location);
     localStorage.setItem('email', newUser.email);
     localStorage.setItem('favorites', newUser.favorites);
-    props.history.push('/profile');
+    props.history.push('/prompt');
   };
 
   return (
