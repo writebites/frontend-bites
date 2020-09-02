@@ -6,6 +6,7 @@
   main {
     display: flex;
     flex-flow: row wrap;
+    align-items: center;
     width: 95vw;
     margin: 1em auto;
     .left-side {
@@ -19,12 +20,16 @@
             padding: 0.5em;
           }
           input[type='number'] {
-            width: 3em;
+            width: 2em;
           }
           label {
             text-align: center;
             padding-bottom: 0.25em;
             width: 100%;
+          }
+          .star-rating {
+            color: teal;
+            padding: 0.5em;
           }
         }
         .button-group {
@@ -32,6 +37,7 @@
           justify-content: center;
           button {
             margin-left: 0.2em;
+            font-size: 1.5em;
           }
         }
       }
@@ -55,6 +61,13 @@
         white-space: pre-wrap;
         font-size: 1.2em;
         line-height: 1.5em;
+        margin-left: 1em;
+      }
+      .image-container {
+        display: flex;
+        justify-content: center;
+        width: 60%;
+        margin: 1rem auto;
       }
     }
   }

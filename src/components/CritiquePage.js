@@ -5,7 +5,11 @@ import {
   faRandom,
   faPaperPlane,
   faEraser,
+  faStar,
 } from '@fortawesome/free-solid-svg-icons';
+import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
+import Rating from 'react-rating';
+import laptopTyping from '../images/laptopTyping.png';
 
 export default function CritiquePage(props) {
   const [responseToCritique, setResponseToCritique] = useState({
@@ -53,6 +57,7 @@ export default function CritiquePage(props) {
         user_id: sampleResponses[responseIndex].user_id,
       };
     });
+    setCritique({ ...critique, body: '', star_rating: 0 });
   };
 
   const handleChange = (e) => {
@@ -80,6 +85,10 @@ export default function CritiquePage(props) {
     setCritique({ ...critique, body: '', star_rating: 0 });
   };
 
+  const handleRatingClick = (value) => {
+    setCritique({ ...critique, star_rating: value });
+  };
+
   return (
     <div className="critique-page">
       <h1>Give Quick Feedback</h1>
@@ -88,6 +97,14 @@ export default function CritiquePage(props) {
           <form onSubmit={handleSubmit}>
             <div className="input-group">
               <label htmlFor="star_rating">Your Rating:</label>
+              <Rating
+                initialRating={critique.star_rating}
+                onClick={handleRatingClick}
+                fractions="2"
+                emptySymbol={<FontAwesomeIcon icon={farStar} />}
+                fullSymbol={<FontAwesomeIcon icon={faStar} />}
+                className="star-rating"
+              />
               <input
                 name="star_rating"
                 id="star_rating"
@@ -136,6 +153,9 @@ export default function CritiquePage(props) {
           <h2>{responseToCritique.title}</h2>
           <h3>Prompt: {responseToCritique.prompt}</h3>
           <p>{responseToCritique.body}</p>
+          <div className="image-container">
+            <img src={laptopTyping} alt="typing on laptop" />
+          </div>
         </div>
       </main>
     </div>
