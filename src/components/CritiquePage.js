@@ -73,10 +73,10 @@ export default function CritiquePage(props) {
       user_id: localStorage.getItem('id'),
       post_id: responseToCritique.post_id,
     };
-    console.log(submissionBody);
+
     let critiques = localStorage.getItem('critiques');
     critiques = JSON.parse(critiques);
-    critiques = [...critiques, critique];
+    critiques = [...critiques, submissionBody];
     localStorage.setItem('critiques', JSON.stringify(critiques));
     props.history.push('/collection');
   };
@@ -112,7 +112,6 @@ export default function CritiquePage(props) {
                 onChange={handleChange}
                 required
                 type="number"
-                placeholder="star rating"
                 step="0.5"
                 max="5"
                 min="0"
