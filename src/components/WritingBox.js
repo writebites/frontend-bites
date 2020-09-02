@@ -5,7 +5,7 @@ export default function WritingBox(props) {
     <div className="writing-box">
       <h2>{props.submission.title}</h2>
       <h3>Prompt: {props.submission.prompt}</h3>
-      <p>{props.submission.writingResponse}</p>
+      <p>{props.submission.body}</p>
     </div>
   );
 }
